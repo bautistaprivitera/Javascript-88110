@@ -1,7 +1,7 @@
 <h1 align="center">Hola 👋, soy Bautista Privitera</h1>
 <h3 align="center">Un apasionado desarrollador backend</h3>
 
-- 💬 Pregúntame sobre **Desarrollo web**
+- 💬 Pregúntame sobre **JavaScript**
 
 - 📫 Cómo contactarme **juanbautistaprivitera@gmail.com**
 
