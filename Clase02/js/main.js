@@ -14,10 +14,5 @@ if(usuario === usuarioIngresado && contraseña === contraseñaIngresada && edad 
 }else{
     console.log("No se ha podido crear debido a falta de informacion");
 }
-const metodoPago = "efectivo, tarjeta, cheque, otro metodo de pago";
-prompt("Ingrese su metodo de pago")
-switch(metodoPago){
-    case "efectivo":
-        console.log("Usted ha pagado con ${efectivo}")
 
-}
+
