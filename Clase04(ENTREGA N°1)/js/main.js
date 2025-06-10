@@ -11,6 +11,11 @@ function restarIntento() {
 while (intentos > 0) {
 
     numeroIngresado = parseInt(prompt("Ingrese un numero entre el 1 y el 500"));
+     
+    if (isNaN(numeroIngresado)) {
+        alert("Tu numero no es valido, intenta de nuevo.");
+        continue;
+    }
     
     if(numeroIngresado < 1 || numeroIngresado > 500){
         alert("El numero que ingresaste no es valido porque es mayor a 500, ingrese un numero nuevamente");
@@ -18,7 +23,7 @@ while (intentos > 0) {
     }
 
     if(numeroIngresado === numeroAleatorio){
-        prompt("Adivinaste el numero, has ganado el juego!!!");
+        alert("Adivinaste el numero, has ganado el juego!!!");
         break;
     }else{
         restarIntento();
