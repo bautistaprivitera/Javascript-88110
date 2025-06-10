@@ -1,5 +1,7 @@
 body{
-    background-color: antiquewhite;
     margin: 0;
     padding: 0;
+}
+header{
+    background-color: #7fffd4;
 }
