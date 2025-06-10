@@ -1,27 +1,38 @@
-function saludar(){
-    alert("Hola, para crear una cuenta aqui deberas ingresar tus datos");
+//Juego de adivinar un numero aleatoria entre el 1 y el 500
+
+let intentos = 10;
+const numeroAleatorio = Math.floor(Math.random() * 500);
+let numeroIngresado;
+
+function restarIntento() {
+    intentos--;
 }
-saludar();
-let nombre = prompt("Ingrese su nombre");
-let apellido = prompt("Ingrese su apellido");
-let usuario;
-let usuarioIngresado;
-let contraseña;
-let contraseñaIngresada;
 
+while (intentos > 0) {
 
-do {
-    usuario = prompt("Ingrese su nombre de usuario");
-    usuarioIngresado = prompt("Ingrese nuevamente su usuario para confirmarlo");
-
-    contraseña = prompt("Ingrese su contraseña");
-    contraseñaIngresada = prompt("Ingrese nuevamente su contraseña para confirmarla");
-
-    if(usuario != usuarioIngresado  || contraseña != contraseñaIngresada){
-        alert("No se ha podido crear la cuenta por usuario o contraseña incorrectas. Vuelva a intentarlo");
+    numeroIngresado = parseInt(prompt("Ingrese un numero entre el 1 y el 500"));
+    
+    if(numeroIngresado < 1 || numeroIngresado > 500){
+        alert("El numero que ingresaste no es valido porque es mayor a 500, ingrese un numero nuevamente");
+        continue;
     }
-} while (usuario != usuarioIngresado || contraseña != contraseñaIngresada);
 
-alert("Su cuenta ha sido creada correctamente");
+    if(numeroIngresado === numeroAleatorio){
+        prompt("Adivinaste el numero, has ganado el juego!!!");
+        break;
+    }else{
+        restarIntento();
+    }
 
-console.log("Su nombre es " +nombre,". Su apellido es " +apellido,", su nombre de usuario es " + usuarioIngresado," y su contraseña es " +contraseñaIngresada);
+    if (intentos == 0) {
+        alert("Perdiste el juego. El numero era " + numeroAleatorio);
+        break;
+    }
+
+    if(numeroIngresado < numeroAleatorio){
+        alert("Tu numero es mayor al numero ingresado, intenta de nuevo. Te quedan " + intentos + " intentos");
+    }else{
+        alert("El numero es menor al numero ingresado, intenta de nuevo. Te quedan " + intentos + " intentos");
+    }
+
+}
