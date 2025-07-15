@@ -57,7 +57,21 @@ function agregarAlCarrito(id) {
   const prod = productos.find(p => p.id === id);
   carrito.push(prod);
   localStorage.setItem("carrito", JSON.stringify(carrito));
-  alert(`${prod.nombre} agregado al carrito, su precio es $${prod.precio}`);
+  const Toast = Swal.mixin({
+  toast: true,
+  position: "bottom-end",
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.onmouseenter = Swal.stopTimer;
+    toast.onmouseleave = Swal.resumeTimer;
+  }
+});
+Toast.fire({
+  icon: "success",
+  title: "Producto agregado al carrito correctamente"
+});
 }
 
 
@@ -65,20 +79,48 @@ function agregarAlCarrito(id) {
 vaciarCarrito.addEventListener("click", () => {
   carrito = [];
   localStorage.removeItem("carrito");
-  alert("Carrito vaciado.");
+  Swal.fire({
+    title: "¡El carrito ha sido vaciado!",
+    icon: "info"
+  })
 });
 
 
 // Mostrar todos los productos del carrito
 verCarrito.addEventListener("click", () => {
   if (carrito.length === 0) {
-    alert("El carrito está vacío");
-  } else {
-    let resumen = "Carrito:\n";
-    carrito.forEach((p) => {
-      resumen += `${p.nombre} - $${p.precio.toLocaleString()}\n`;
+    Swal.fire({
+      title: "¡El carrito está vacío!",
+      text: "Agrega productos para poder comprarlos.",
+      icon: "error"
     });
-    alert(resumen);
+  } else {
+    let resumen = " ";
+    let total = 0;
+    carrito.forEach((p) => {
+      resumen += `${p.nombre} - $${p.precio.toLocaleString()}<br>`;
+      total += p.precio
+    });
+
+    resumen += `<hr><strong>Total: $${total.toLocaleString()}</strong>`;
+
+    Swal.fire({
+      title: "Productos en el carrito",
+      html: resumen,
+      icon: "info",
+      showCancelButton: true,
+      confirmButtonText: "Confirmar compra",
+      cancelButtonText: "Seguir comprando"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "¡Compra confirmada!",
+          text: "Gracias por tu compra.",
+          icon: "success"
+        });
+        carrito.length = 0; 
+      }
+    });
   }
 });
 
@@ -107,11 +149,14 @@ filtroPrecio.addEventListener("input", aplicarFiltros);
 
 
 //Modo oscuro
-if (localStorage.getItem("modo") === "oscuro") {
-  document.body.classList.add("dark-mode");
+function darkMode(){
+  if (localStorage.getItem("modo") === "oscuro") {
+    document.body.classList.add("dark-mode");
+  }
+  btnModoOscuro.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+    const modoActual = document.body.classList.contains("dark-mode") ? "oscuro" : "claro";
+    localStorage.setItem("modo", modoActual);
+  });
 }
-btnModoOscuro.addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
-  const modoActual = document.body.classList.contains("dark-mode") ? "oscuro" : "claro";
-  localStorage.setItem("modo", modoActual);
-});
+darkMode();
