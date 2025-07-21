@@ -17,10 +17,8 @@ header {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  justify-content: center;
-  margin-top: 1rem;
+  justify-content: center
 }
-
 input, select, button {
   padding: 0.5rem;
   border-radius: 4px;
