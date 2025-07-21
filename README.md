@@ -9,14 +9,6 @@ Este proyecto es una tienda online simple creada con **HTML, CSS y JavaScript pu
 - Alternar entre modo claro y oscuro
 - Guardar el carrito con `localStorage`
 
-## 🚀 Cómo ejecutar el proyecto
-
-1. **Descargá o cloná** el repositorio en tu computadora.
-2. Abrí la carpeta del proyecto con **Visual Studio Code**.
-3. Ejecutá el archivo `index.html` con tu navegador (doble clic o clic derecho → "Abrir con Live Server").
-
-> 📝 No necesita instalación de dependencias ni servidores adicionales.
-
 ## 📁 Estructura del proyecto
 
 ```
