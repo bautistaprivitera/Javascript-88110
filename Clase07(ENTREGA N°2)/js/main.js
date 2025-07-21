@@ -1,19 +1,7 @@
-const productos = [
-  { id: 1, nombre: "Camisa Blanca", categoria: "camisa", precio: 26000, imagen: "../assets/camisaBlanca.jpg" },
-  { id: 2, nombre: "Pantalón Azul", categoria: "pantalon", precio: 32000, imagen: "../assets/pantalonAzul.jpg" },
-  { id: 3, nombre: "Vestido Rojo", categoria: "vestido", precio: 48500, imagen: "../assets/vestidoRojo.jpg" },
-  { id: 4, nombre: "Camisa Negra", categoria: "camisa", precio: 27000, imagen: "../assets/camisaNegra.jpg" },
-  { id: 5, nombre: "Camisa Azul", categoria: "camisa", precio: 26500, imagen: "../assets/camisaAzul.jpg" },
-  { id: 6, nombre: "Pantalón Negro", categoria: "pantalon", precio: 34000, imagen: "../assets/pantalonNegro.jpg" },
-  { id: 7, nombre: "Vestido Negro", categoria: "vestido", precio: 50000, imagen: "../assets/vestidoNegro.jpg" },
-  { id: 8, nombre: "Camisa Celeste", categoria: "camisa", precio: 25000, imagen: "../assets/camisaCeleste.jpg" },
-  { id: 9, nombre: "Vestido Blanco", categoria: "vestido", precio: 52000, imagen: "../assets/vestidoBlanco.jpg" },
-  { id: 10, nombre: "Pantalón Marron", categoria: "pantalon", precio: 31000, imagen: "../assets/pantalonMarron.jpg" },
-  { id: 11, nombre: "Vestido Azul", categoria: "vestido", precio: 48000, imagen: "../assets/vestidoAzul.jpg" },
-  { id: 12, nombre: "Camisa Marron", categoria: "camisa", precio: 28000, imagen: "../assets/camisaMarron.jpg" }
-];
-
-
+let productos = [];
+let pagina = 0;
+const limite = 16;
+let cargando = false;
 
 //LocalStorage
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
@@ -26,6 +14,35 @@ const filtroPrecio = document.getElementById("filtroPrecio");
 const btnModoOscuro = document.getElementById("btnModoOscuro");
 const verCarrito = document.getElementById("verCarrito")
 const vaciarCarrito = document.getElementById("vaciarCarrito")
+
+async function cargarProductos() {
+  if (cargando) return;
+  cargando = true;
+
+  const skip = pagina * limite;
+  const url = `https://dummyjson.com/products?limit=${limite}&skip=${skip}`;
+
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+
+    const nuevosProductos = data.products.map(prod => ({
+      id: prod.id,
+      nombre: prod.title,
+      categoria: prod.category,
+      precio: prod.price * 1000,
+      imagen: prod.thumbnail
+    }));
+
+    productos = productos.concat(nuevosProductos);
+    mostrarProductos(productos);
+    pagina++;
+  } catch (err) {
+    console.error("Error al cargar productos:", err);
+  } finally {
+    cargando = false;
+  }
+}
 
 // Mostrar productos
 function mostrarProductos(lista) {
@@ -160,3 +177,10 @@ function darkMode(){
   });
 }
 darkMode();
+
+window.addEventListener("scroll", () => {
+  if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
+    cargarProductos(); 
+  }
+});
+cargarProductos();
