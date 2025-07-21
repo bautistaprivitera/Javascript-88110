@@ -1,13 +1,46 @@
-<h1 align="center">Hola 👋, soy Bautista Privitera</h1>
-<h3 align="center">Un apasionado desarrollador backend</h3>
+# 🛍️ Mi Tienda Online
 
-- 💬 Pregúntame sobre **JavaScript**
+Este proyecto es una tienda online simple creada con **HTML, CSS y JavaScript puro**, que permite:
 
-- 📫 Cómo contactarme **juanbautistaprivitera@gmail.com**
+- Buscar productos por nombre
+- Filtrar por rango de precio
+- Agregar productos al carrito
+- Confirmar compras simuladas
+- Alternar entre modo claro y oscuro
+- Guardar el carrito con `localStorage`
 
-<h3 align="left">Conecta conmigo:</h3>
-<p align="left">
-</p>
+## 🚀 Cómo ejecutar el proyecto
 
-<h3 align="left">Lenguajes y herramientas:</h3>
-<p align="left"> <a href="https://getbootstrap.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-plain-wordmark.svg" alt="bootstrap" width="40" height="40"/> </a> <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> </p>
+1. **Descargá o cloná** el repositorio en tu computadora.
+2. Abrí la carpeta del proyecto con **Visual Studio Code**.
+3. Ejecutá el archivo `index.html` con tu navegador (doble clic o clic derecho → "Abrir con Live Server").
+
+> 📝 No necesita instalación de dependencias ni servidores adicionales.
+
+## 📁 Estructura del proyecto
+
+```
+📦mi-tienda-online
+ ┣ 📂css
+ ┃ ┗ 📄style.css
+ ┣ 📂js
+ ┃ ┗ 📄main.js
+ ┣ 📄index.html
+```
+
+## 🛠 Tecnologías utilizadas
+
+- HTML5
+- CSS3
+- JavaScript (ES6)
+- API externa: [dummyjson.com/products](https://dummyjson.com/products)
+- SweetAlert2 para las alertas interactivas
+
+## 👤 Autor
+
+Juan Francisco Privitera
+
+## 📝 Notas adicionales
+
+- El carrito se guarda en el navegador mediante `localStorage`, por lo que se conserva al recargar.
+- El proyecto usa carga incremental al hacer scroll, mientras no haya filtros activos.
