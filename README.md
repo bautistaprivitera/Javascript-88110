@@ -30,7 +30,7 @@ Este proyecto es una tienda online simple creada con **HTML, CSS y JavaScript pu
 
 ## 👤 Autor
 
-Juan Francisco Privitera
+Juan Bautista Privitera
 
 ## 📝 Notas adicionales
 
